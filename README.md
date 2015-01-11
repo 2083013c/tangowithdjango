@@ -1,3 +1,0 @@
-# tangowithdjango
-
-By James Carroll
