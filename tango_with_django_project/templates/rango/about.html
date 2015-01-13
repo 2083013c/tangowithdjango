@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+{% load staticfiles %} <!-- New line -->
+
+<html>
+
+    <head>
+        <title>About</title>
+    </head>
+
+    <body>
+        <h1>About me.....</h1>
+        <strong>{{ message }}</strong><br />
+        <a href='/rango'>main page</a><br />
+        <img src="{% static "images/me.jpg" %}" alt="Picture of me" /> <!-- New line -->
+    </body>
+
+</html>
