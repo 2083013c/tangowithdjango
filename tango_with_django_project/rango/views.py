@@ -14,7 +14,9 @@ def user_logout(request):
 
 @login_required
 def restricted(request):
-    return HttpResponse("Since you're logged in, you can see this text!")
+    context_dict = {}
+    context_dict['message'] = "Since you're logged in, you can see this text!"
+    return render(request, 'rango/restricted.html', context_dict)
 
 def category(request, category_name_slug):
     context_dict = {}
@@ -80,7 +82,6 @@ def add_page(request, category_name_slug):
         form = PageForm()
 
     context_dict = {'form':form, 'category': cat}
-
     return render(request, 'rango/add_page.html', context_dict)
 
 
@@ -122,6 +123,7 @@ def register(request):
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
 
 def user_login(request):
+    context_dict = {}
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -132,11 +134,13 @@ def user_login(request):
                 return HttpResponseRedirect('/rango/')
             else:
                 # An inactive account was used - no logging in!
-                return HttpResponse("Your Rango account is disabled.")
+                context_dict['disabled_account'] = True
+                return render(request, 'rango/login.html', context_dict)
         else:
             # Bad login details were provided. So we can't log the user in.
             print "Invalid login details: {0}, {1}".format(username, password)
-            return HttpResponse("The username: "+username+" , or the password you provided is invalid")
+            context_dict['incorrect_details'] = True
+            return render(request, 'rango/login.html', context_dict)
 
     # The request is not a HTTP POST, so display the login form.
     # This scenario would most likely be a HTTP GET.
