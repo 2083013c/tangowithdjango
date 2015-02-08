@@ -7,10 +7,12 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 
+'''
 @login_required
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect('/rango/')
+    return HttpResponseRedirect('/rango/')*/
+'''
 
 
 @login_required
@@ -118,7 +120,7 @@ def add_page(request, category_name_slug):
     context_dict = {'form':form, 'category': cat}
     return render(request, 'rango/add_page.html', context_dict)
 
-
+'''
 def register(request):
     registered = False
     if request.method == 'POST':
@@ -155,7 +157,9 @@ def register(request):
     return render(request,
             'rango/register.html',
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
+'''
 
+'''
 def user_login(request):
     context_dict = {}
     if request.method == 'POST':
@@ -182,3 +186,4 @@ def user_login(request):
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
         return render(request, 'rango/login.html', {})
+'''
