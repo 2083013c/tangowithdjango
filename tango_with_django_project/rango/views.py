@@ -7,13 +7,6 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 
-'''
-@login_required
-def user_logout(request):
-    logout(request)
-    return HttpResponseRedirect('/rango/')*/
-'''
-
 
 @login_required
 def restricted(request):
@@ -120,70 +113,5 @@ def add_page(request, category_name_slug):
     context_dict = {'form':form, 'category': cat}
     return render(request, 'rango/add_page.html', context_dict)
 
-'''
-def register(request):
-    registered = False
-    if request.method == 'POST':
-        user_form = UserForm(data=request.POST)
-        profile_form = UserProfileForm(data=request.POST)
 
-        if user_form.is_valid() and profile_form.is_valid():
 
-            user = user_form.save()
-
-            user.set_password(user.password)
-            user.save()
-
-            profile = profile_form.save(commit=False)
-            profile.user = user
-
-            # Did the user provide a profile picture?
-            # If so, we need to get it from the input form and put it in the UserProfile model.
-            if 'picture' in request.FILES:
-                profile.picture = request.FILES['picture']
-
-            profile.save()
-            registered = True
-        else:
-            print user_form.errors, profile_form.errors
-
-    # Not a HTTP POST, so we render our form using two ModelForm instances.
-    # These forms will be blank, ready for user input.
-    else:
-        user_form = UserForm()
-        profile_form = UserProfileForm()
-
-    # Render the template depending on the context.
-    return render(request,
-            'rango/register.html',
-            {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
-'''
-
-'''
-def user_login(request):
-    context_dict = {}
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-        if user:
-            if user.is_active:
-                login(request, user)
-                return HttpResponseRedirect('/rango/')
-            else:
-                # An inactive account was used - no logging in!
-                context_dict['disabled_account'] = True
-                return render(request, 'rango/login.html', context_dict)
-        else:
-            # Bad login details were provided. So we can't log the user in.
-            print "Invalid login details: {0}, {1}".format(username, password)
-            context_dict['incorrect_details'] = True
-            return render(request, 'rango/login.html', context_dict)
-
-    # The request is not a HTTP POST, so display the login form.
-    # This scenario would most likely be a HTTP GET.
-    else:
-        # No context variables to pass to the template system, hence the
-        # blank dictionary object...
-        return render(request, 'rango/login.html', {})
-'''

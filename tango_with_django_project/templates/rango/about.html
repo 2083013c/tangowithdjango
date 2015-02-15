@@ -5,10 +5,14 @@
 {% block title %}About me{% endblock %}
 
 {% block body_block %}
+     <div class="page-header">
         <h1>About me.....</h1>
+      </div>
+      <div>
         <strong>{{ message }}</strong><br />
         <img src="{% static "images/me.jpg" %}" alt="Picture of me" /> <!-- New line -->
 		
-		<p>visits: {{visits}}</p>
+	<p>visits: {{visits}}</p>
+       </div>
 
 {% endblock %}
