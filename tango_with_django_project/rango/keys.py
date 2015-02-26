@@ -1,1 +1,0 @@
-bing_api_key = "wIFpe7g33KH/4L3Y2Qn0y4/C86HKR86A5qzgXoJs+gY"
