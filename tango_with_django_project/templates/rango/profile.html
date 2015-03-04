@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %} Profile {% endblock %}
+
+{% block body_block %}
+    <div>
+    <h2>{{ user.username }}</h2>
+    <p>Email: {{ user.email }}</p>
+    {% if userprofile %}
+        <p>Website: <a href="{{ userprofile.website }}">{{ userprofile.website }}</a></p>
+        {% if userprofile.picture %}
+           <img src="{{ userprofile.picture.url }}" />
+        {% endif %}
+    {% endif %}
+    <p><a href="/rango/add_profile">Edit Profile</a></p><br />
+    </div>
+{% endblock %}
