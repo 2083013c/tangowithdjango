@@ -1,5 +1,4 @@
 # tangowithdjango
 
-Chapter 3 - completed
-reset author
-and added chapter 3 again.
+#Chapter 21 completed
+http://2083013c.pythonanywhere.com/rango/
