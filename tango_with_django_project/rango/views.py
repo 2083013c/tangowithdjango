@@ -187,3 +187,8 @@ def register_profile(request):
     else:
         form = UserProfileForm(request.GET)
     return render(request, 'rango/profile_registration.html', {'profile_form': form})
+
+@login_required
+def browse_profiles(request):
+    profiles = User.objects.all()
+    return render(request, 'rango/browse_profiles.html', {'users': profiles})
