@@ -34,7 +34,7 @@ def category(request, category_name_slug):
         context_dict['pages'] = pages
         context_dict['category'] = category
     except Category.DoesNotExist:
-        pass
+        return render(request, 'rango/cat_error.html', {})
     if not context_dict['query']:
         context_dict['query'] = category.name
     return render(request, 'rango/category.html', context_dict)
